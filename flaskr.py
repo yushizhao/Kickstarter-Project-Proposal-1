@@ -65,5 +65,5 @@ def show_category_state():
 if __name__ == '__main__':
     init_db()
     port = int(os.environ.get('PORT', 33507))
-    # app.run(host='0.0.0.0', port=port)
-    app.run()
+    app.run(host='0.0.0.0', port=port)
+    # app.run() for localhost
