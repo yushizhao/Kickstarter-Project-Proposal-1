@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+        <meta charset="utf-8">
+        <title>Yushi Project Proposal</title>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+        <!-- head for Bokeh plot -->
+		<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.css" type="text/css" />
+        
+		<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
+		<script type="text/javascript">
+			Bokeh.set_log_level("info");
+		</script>
+				<style>
+				  html {
+					width: 100%;
+					height: 100%;
+				  }
+				  body {
+					width: 90%;
+					height: 100%;
+					margin: auto;
+				  }
+				</style>
+	</head>
+	<body>
+		<h1>Background</h1>
+		<h2>
+			Kickstarter maintains a global crowdfunding platform focused on creativity such as films, music, stage shows, comics, journalism, video games, technology and food.
+			On Kickstarter, people can present their ideas as projects in order to get fund from broad audiences.
+			Project creators choose a deadline and a minimum funding goal. If the goal is not met by the deadline, no funds are collected (a kind of assurance contract).
+		</h2>
+		<h1>Where are the great ideas people want to see?</h1>
+		<h2>
+			I have a great idea. I can forge it into books, videos, photographs or maybe games.<br>
+			Which format is more welcomed now?<br>
+			Let's take a look at how many projects successed in each category.
+		</h2>
+
+		<p>
+			{% if bokeh_plot != None %}
+			<!-- script and div elements for Bokeh plot -->
+			{{ bokeh_plot[0]|safe }}
+			{{ bokeh_plot[1]|safe }}
+			{% endif %}
+		</p>
+		<h1>How about within the subcategory level?</h1>
+		<h2>Please select a category. Then click 'Plot'.</h2>
+<form method=post action="">
+<select name=category>
+  <option value="art">art</option>
+  <option value="comics">comics</option>
+  <option value="crafts">crafts</option>
+  <option value="dance">dance</option>
+  <option value="design">design</option>
+  <option value="fashion">fashion</option>
+  <option value="film & video">film & video</option>
+  <option value="food">food</option>
+  <option value="games">games</option>
+  <option value="journalism">journalism</option>
+  <option value="music">music</option>
+  <option value="photography">photography</option>
+  <option value="publishing">publishing</option>
+  <option value="technology">technology</option>
+  <option value="theater">theater</option>
+</select>
+<input type="submit" value="Plot" name=viz>
+</form>
+		<p>
+			{% if plot_sub != None %}
+			<!-- script and div elements for Bokeh plot -->
+			{{ plot_sub[0]|safe }}
+			{{ plot_sub[1]|safe }}
+			{% endif %}
+		</p>
+		<p> Data Source: http://webrobots.io/kickstarter-datasets/ </p>
+	</body>
+</html>
